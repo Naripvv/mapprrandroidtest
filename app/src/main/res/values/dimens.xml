@@ -1,3 +1,20 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="app_bar_height">220dp</dimen>
+    <dimen name="margin_05">05dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+
+    <dimen name="padding_05">05dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+    <dimen name="padding_15">15dp</dimen>
+    <dimen name="padding_20">20dp</dimen>
+
+
+    <dimen name="text_smallsize">14sp</dimen>
+    <dimen name="text_mediumsize">18sp</dimen>
+    <dimen name="text_largesize">20sp</dimen>
+    <dimen name="text_highsize">30sp</dimen>
+
 </resources>

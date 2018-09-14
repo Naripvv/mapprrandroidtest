@@ -48,14 +48,6 @@ public class JsonHelper implements ConstVariable
 
             switch (1)
             {
-                /*case 0:
-                    //response = jsonObject.optString(Response_Text);
-                    response=FAILURE;
-                    jsonArray = jsonObject.optJSONArray(DATA);
-
-                    Utils.global.mapMain =  Utils.GetJsonDataIntoMap(context, jsonArray,"");
-
-                    break;*/
                 case 1:
                     response = ConstVariable.SUCCESS;
                    jsonArray = jsonObject.optJSONArray(DATA);

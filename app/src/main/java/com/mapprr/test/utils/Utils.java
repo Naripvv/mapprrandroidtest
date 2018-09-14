@@ -98,15 +98,14 @@ public class Utils
     }
 
 
-
     public static void setImagePiccaso(final Context context, String url, final ImageView imagevv)
     {
         //Utils.e(Tag+"118", "PHOTO===="+url);
 
-       /* Picasso.with(context).load(url)
+        Picasso.with(context).load(url)
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.placeholder).into(imagevv);
-*/
+
         /*Picasso.with(context).load(url).resize(600, 600)
                 .centerInside()
                 .onlyScaleDown()
@@ -246,7 +245,6 @@ public class Utils
             HashMap<String, Object> itemSub = null;
 //                Utils.e("Utils 715", "GetEventOfflineList ok"+array);
             JSONObject ary = null;
-            JSONObject arySub = null;
 //                Utils.e("Utils760", ""+array);
             for (int i = 0; i < array.length(); i++)
             {
@@ -267,84 +265,38 @@ public class Utils
 
                          if (key.equalsIgnoreCase(ConstVariable.SUBARRAY))
                         {
-//                            Utils.e("Utils 733", "JSONObject ok "+ConstVariable.EVENTIMAGE);
-                            JSONArray arraySub = ary.optJSONArray(ConstVariable.SUBARRAY);
+                            JSONObject arraySub = ary.optJSONObject(ConstVariable.SUBARRAY);
 //                            Utils.e("Utils 733", "arraySub ok "+arraySub);
                             if (arraySub != null)
                             {
                                 List<HashMap<String, Object>> tempArrayMapImage = new ArrayList<HashMap<String, Object>>();
-                                for (int j = 0; j < arraySub.length(); j++)
-                                {
-                                    arySub = arraySub.optJSONObject(j);
-                                    if(arySub != null){
-//                                Utils.e("Utils 736", "JSONObject ok "+arySub);
-                                        Iterator<String> itSub = arySub.keys();
-//                                Utils.e("Utils 738", "Iterator ok "+itSub);
+
+                                        Iterator<String> itSub = arraySub.keys();
                                         itemSub = new HashMap<String, Object>();
-//                                        Utils.e("Utils 786", "arySubPer ok " + arySub);
-                                        while (itSub.hasNext()) {
+
+                                        while (itSub.hasNext())
+                                        {
                                             String keySub = itSub.next();
-//                                            Utils.e("Utils 786", keySub + "GetEventOfflineList ok " + arySub.get(keySub));
-                                            if (arySub.get(keySub) != null) {
-//                                    Utils.e("Utils780",key+" : "+ary.get(key));
-                                                itemSub.put(keySub, arySub.get(keySub));
-                                            } else {
-//                                    Utils.e("Utils780","key : "+key);
+                                            if (arraySub.get(keySub) != null)
+                                            {
+                                                itemSub.put(keySub, arraySub.get(keySub));
+                                            }
+                                            else
+                                            {
                                                 itemSub.put(keySub, "");
                                             }
                                         }
                                         tempArrayMapImage.add(itemSub);
-                                    }
-                                    else
-                                    {
-                                        tempArrayMapImage = null;
-                                    }
-                                }
+
                                 item.put(ConstVariable.SUBARRAY, tempArrayMapImage);
-//                                    Utils.e("Utils 795", "arySubPer ok " + item);
-                            } else {
+                            }
+                            else
+                            {
                                 item.put(ConstVariable.SUBARRAY, null);
                             }
                         }
 
-
-                        else if (key.equalsIgnoreCase(ConstVariable.SUBARRAY1))
-                        {
-//                            Utils.e("Utils 733", "JSONObject ok "+ConstVariable.EVENTIMAGE);
-                            JSONArray arraySub = ary.optJSONArray(ConstVariable.SUBARRAY1);
-//                            Utils.e("Utils 733", "arraySub ok "+arraySub);
-                            if (arraySub != null) {
-                                List<HashMap<String, Object>> tempArrayMapImage = new ArrayList<HashMap<String, Object>>();
-                                for (int j = 0; j < arraySub.length(); j++) {
-                                    arySub = arraySub.optJSONObject(j);
-                                    if(arySub != null){
-//                                Utils.e("Utils 736", "JSONObject ok "+arySub);
-                                        Iterator<String> itSub = arySub.keys();
-//                                Utils.e("Utils 738", "Iterator ok "+itSub);
-                                        itemSub = new HashMap<String, Object>();
-//                                        Utils.e("Utils 786", "arySubPer ok " + arySub);
-                                        while (itSub.hasNext()) {
-                                            String keySub = itSub.next();
-//                                            Utils.e("Utils 786", keySub + "GetEventOfflineList ok " + arySub.get(keySub));
-                                            if (arySub.get(keySub) != null) {
-//                                    Utils.e("Utils780",key+" : "+ary.get(key));
-                                                itemSub.put(keySub, arySub.get(keySub));
-                                            } else {
-//                                    Utils.e("Utils780","key : "+key);
-                                                itemSub.put(keySub, "");
-                                            }
-                                        }
-                                        tempArrayMapImage.add(itemSub);
-                                    }else{
-                                        tempArrayMapImage = null;
-                                    }
-                                }
-                                item.put(ConstVariable.SUBARRAY1, tempArrayMapImage);
-//                                    Utils.e("Utils 795", "arySubPer ok " + item);
-                            } else {
-                                item.put(ConstVariable.SUBARRAY1, null);
-                            }
-                        } else {
+                        else {
                             if (ary.get(key) != null) {
 //                                    Utils.e("Utils780",key+" : "+ary.get(key));
                                 item.put(key, ary.get(key));
@@ -373,91 +325,43 @@ public class Utils
     {
         List<HashMap<String, Object>> collection = new ArrayList<HashMap<String, Object>>();
         try {
-           HashMap<String, Object> item = null;
+            HashMap<String, Object> item = null;
             HashMap<String, Object> itemSub = null;
             JSONObject ary = null;
-            JSONObject arySub = null;
             for (int i = 0; i < array.length(); i++)
             {
                    ary = array.optJSONObject(i);
-//                    Utils.e("Utils 719", "JSONObject ok " + ary);
-                if (ary != null) {
-//                        Utils.e("Utils 720", "JSONObject ok " + ary);
+                if (ary != null)
+                {
                     Iterator<String> it = ary.keys();
-                   // Utils.e("Utils 3695", "Iterator ok " + it);
                     item = new HashMap<String, Object>();
-                    while (it.hasNext()) {
+                    while (it.hasNext())
+                    {
                         String key = it.next();
-                        if (key.equalsIgnoreCase(ConstVariable.SUBARRAY))
+                        if (key.equalsIgnoreCase(ConstVariable.SUBARRAY1))
                         {
-//                            Utils.e("Utils 733", "JSONObject ok "+ConstVariable.EVENTIMAGE);
-                            JSONArray arraySub = ary.optJSONArray(ConstVariable.SUBARRAY);
-//                            Utils.e("Utils 733", "arraySub ok "+arraySub);
-                            if (arraySub != null) {
-                                List<HashMap<String, Object>> tempArrayMapImage = new ArrayList<HashMap<String, Object>>();
-                                for (int j = 0; j < arraySub.length(); j++) {
-                                    arySub = arraySub.optJSONObject(j);
-                                    if(arySub != null){
-//                                Utils.e("Utils 736", "JSONObject ok "+arySub);
-                                        Iterator<String> itSub = arySub.keys();
-//                                Utils.e("Utils 738", "Iterator ok "+itSub);
-                                        itemSub = new HashMap<String, Object>();
-//                                        Utils.e("Utils 786", "arySubPer ok " + arySub);
-                                        while (itSub.hasNext()) {
-                                            String keySub = itSub.next();
-//                                            Utils.e("Utils 786", keySub + "GetEventOfflineList ok " + arySub.get(keySub));
-                                            if (arySub.get(keySub) != null) {
-//                                    Utils.e("Utils780",key+" : "+ary.get(key));
-                                                itemSub.put(keySub, arySub.get(keySub));
-                                            } else {
-//                                    Utils.e("Utils780","key : "+key);
-                                                itemSub.put(keySub, "");
-                                            }
-                                        }
-                                        tempArrayMapImage.add(itemSub);
-                                    }else{
-                                        tempArrayMapImage = null;
-                                    }
-                                }
-                                item.put(ConstVariable.SUBARRAY, tempArrayMapImage);
-//                                    Utils.e("Utils 795", "arySubPer ok " + item);
-                            } else {
-                                item.put(ConstVariable.SUBARRAY, null);
-                            }
-                        } else if (key.equalsIgnoreCase(ConstVariable.SUBARRAY1))
-                        {
-//                            Utils.e("Utils 733", "JSONObject ok "+ConstVariable.EVENTIMAGE);
-                            JSONArray arraySub = ary.optJSONArray(ConstVariable.SUBARRAY1);
-//                            Utils.e("Utils 733", "arraySub ok "+arraySub);
-                            if (arraySub != null) {
-                                List<HashMap<String, Object>> tempArrayMapImage = new ArrayList<HashMap<String, Object>>();
-                                for (int j = 0; j < arraySub.length(); j++) {
-                                    arySub = arraySub.optJSONObject(j);
-                                    if(arySub != null){
+                            JSONObject arraySub = ary.optJSONObject(key);
 
-//                                Utils.e("Utils 736", "JSONObject ok "+arySub);
-                                        Iterator<String> itSub = arySub.keys();
-//                                Utils.e("Utils 738", "Iterator ok "+itSub);
-                                        itemSub = new HashMap<String, Object>();
-//                                        Utils.e("Utils 786", "arySubPer ok " + arySub);
-                                        while (itSub.hasNext()) {
-                                            String keySub = itSub.next();
-//                                            Utils.e("Utils 786", keySub + "GetEventOfflineList ok " + arySub.get(keySub));
-                                            if (arySub.get(keySub) != null) {
-//                                    Utils.e("Utils780",key+" : "+ary.get(key));
-                                                itemSub.put(keySub, arySub.get(keySub));
-                                            } else {
-//                                    Utils.e("Utils780","key : "+key);
-                                                itemSub.put(keySub, "");
-                                            }
+                            if (arraySub != null)
+                            {
+                                 Iterator<String> itSub = arraySub.keys();
+                                    while (itSub.hasNext())
+                                    {
+                                        String keySub = itSub.next();
+                                        if (arraySub.get(keySub) != null)
+                                        {
+                                            item.put(keySub, arraySub.get(keySub));
                                         }
-                                        tempArrayMapImage.add(itemSub);
-                                    }else{
-                                        tempArrayMapImage = null;
+                                        else
+                                        {
+                                            item.put(keySub, "");
+                                        }
+
                                     }
-                                }
-                                item.put(ConstVariable.SUBARRAY1, tempArrayMapImage);
-//                                    Utils.e("Utils 795", "arySubPer ok " + item);
+
+                                    //tempArrayMapImage.add(itemSub);
+
+                                //item.put(ConstVariable.SUBARRAY1, tempArrayMapImage);
                             }
                             else
                             {

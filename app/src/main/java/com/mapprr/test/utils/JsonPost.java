@@ -154,8 +154,33 @@ public class JsonPost implements ConstVariable
                                         Utils.e("" + "739999999999999======", "87867687687687a===="+  Utils.global.reposList);
 
                                         // BookReservation.Instance.updateDropAddressList(Utils.global.dropAddresslist);
-                                        //  com.mapprr.test.activity.DropAddressList.loadRequestsList(context,Utils.global.dropAddresslist,"mode");
 
+                                         List<HashMap<String,Object>> mlist=new ArrayList<>();
+
+                                         for (int i=0;i<10;i++)
+                                         {
+                                             mlist.add(Utils.global.reposList.get(i));
+                                         }
+
+                                        HashMap<String,Object> a;
+                                        int x,y;
+
+                                        for (int i = 0; i < mlist.size(); ++i)
+                                        {
+                                            for (int j = i + 1; j < mlist.size(); ++j)
+                                            {
+                                                 x=Integer.parseInt(mlist.get(i).get("watchers_count").toString());
+                                                 y=Integer.parseInt(mlist.get(j).get("watchers_count").toString());
+
+                                                if (x < y)
+                                                {
+                                                    a = mlist.get(i);
+                                                    mlist.set(i, mlist.get(j));
+                                                    mlist.set(j, a);
+                                                }
+                                            }
+                                        }
+                                          com.mapprr.test.activity.HomeActivity.loadRequestsList(context,mlist,"mode");
                                     }
                                     else
                                     {
@@ -175,7 +200,7 @@ public class JsonPost implements ConstVariable
                         Utils.progressDialog.dismiss();
                         Utils.progressDialog = null;
                     }
-                    Utils.e(TAG+"98","Exception==================Exception===================Exception");
+                    Utils.e(TAG+"98","Exception==================Exception===================Exception"+error.getMessage());
 
                 }
             });
